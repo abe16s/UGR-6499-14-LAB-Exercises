@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -52,13 +54,18 @@ class MyApp extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: 200,
-                        child: Image.asset("assets/car.jpg")),
-                      Column(
+                      Row(
                         children: [
-                          Text("Salads"),
-                          Text("\$15.00"),
+                          Container(
+                            width: 200,
+                            child: Image.asset("assets/car.jpg")),
+                          SizedBox(width: 10,),
+                          Column(
+                            children: [
+                              Text("Salads"),
+                              Text("\$15.00"),
+                            ],
+                          ),
                         ],
                       ),
                       Column(
@@ -78,13 +85,18 @@ class MyApp extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: 200,
-                        child: Image.asset("assets/car.jpg")),
-                      Column(
+                      Row(
                         children: [
-                          Text("Angel Hair"),
-                          Text("\$22.9"),
+                          Container(
+                            width: 200,
+                            child: Image.asset("assets/car.jpg")),
+                          SizedBox(width: 10,),
+                          Column(
+                            children: [
+                              Text("Angel Hair"),
+                              Text("\$22.9"),
+                            ],
+                          ),
                         ],
                       ),
                       Column(
@@ -100,6 +112,42 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            SizedBox(height: 100,),
+
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              
+                    children: [
+                      Text("Subtotal"),
+                      Text("\$60.98")
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              
+                    children: [
+                      Text("TAX(10.0%)"),
+                      Text("\$6.10")
+                    ],
+                  ),
+
+
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                    color: Colors.red[400],
+                    borderRadius: BorderRadius.all(Radius.circular(50))),
+                    child: Center(child: Text("Checkout", style: TextStyle(fontSize: 20),)),
+                  )
+
+                ],
+              ),
             )
           ],
         ),
@@ -107,4 +155,5 @@ class MyApp extends StatelessWidget {
       )
     );
   }
+
 }
