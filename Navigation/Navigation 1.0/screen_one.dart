@@ -5,7 +5,6 @@ class ScreenOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String result = "Alemu";
     return Scaffold(
       appBar: AppBar(
         title: const Text("Screen One"),
@@ -27,7 +26,6 @@ class ScreenOne extends StatelessWidget {
                   // print(result);
             }
             ),
-            Text(result),
           ],
         ),
       ),
