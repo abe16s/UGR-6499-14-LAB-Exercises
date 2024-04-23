@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_posts/post_notifier.dart';
-import 'post_model.dart';
+import 'package:riverpod_posts/todo_notifier.dart';
 
 void main() {
   runApp(const ProviderScope(
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Posts App',
+      title: 'Todos App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -30,58 +29,31 @@ class MyHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(postsProvider).fetchPosts();
-    final posts = ref.watch(postsProvider).posts;
+    ref.read(todosProvider).fetchTodos();
+    final todos = ref.watch(todosProvider).todos;
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black26,
         centerTitle: true,
-        title: const Text('RiverPod All Posts'),
+        title: const Text('RiverPod All Todos'),
       ),
-      body: posts.isEmpty
+      body: todos.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
-              itemCount: posts.length,
+              itemCount: todos.length,
               itemBuilder: (context, index) {
-                final post = posts[index];
+                final todo = todos[index];
                 return ListTile(
                   leading: CircleAvatar(
                     child: Text('${index + 1}'),
                     backgroundColor: Colors.amber,
                   ),
-                  title: Text(post.title),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PostDetailScreen(post: post),
-                      ),
-                    );
-                  },
+                  title: Text(todo.title),
+                  trailing: todo.completed ? Icon(Icons.check_box): Icon(Icons.check_box_outline_blank),
                 );
               },
             ),
-    );
-  }
-}
-
-class PostDetailScreen extends StatelessWidget {
-  final Post post;
-
-  const PostDetailScreen({super.key, required this.post});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black26,
-        title: Text(post.title),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(child: Text(post.body)),
-      ),
     );
   }
 }
