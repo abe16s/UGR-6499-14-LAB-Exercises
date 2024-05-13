@@ -1,10 +1,11 @@
 fun analyzeString(input: String): Triple<Int, Int, Int> {
-  var wordCount: Int = 0
-  var uppercaseCount: Int = 0
-  var vowelCount: Int = 0
+  
   
   var words = input.split(" ")
-  wordCount = words.size
+  var wordCount: Int = words.size
+  var uppercaseCount: Int = 0
+  var vowelCount: Int = 0
+
   for (word in words) {
     word.forEach { char ->
         if (char.isUpperCase()) {
